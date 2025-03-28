@@ -1,0 +1,86 @@
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 7033 examples [00:00, 143238.52 examples/s]
+Map:   0%|          | 0/7033 [00:00<?, ? examples/s]Map:  43%|####2     | 3000/7033 [00:00<00:00, 28523.43 examples/s]Map:  86%|########5 | 6029/7033 [00:00<00:00, 29534.79 examples/s]Map: 100%|##########| 7033/7033 [00:00<00:00, 29300.15 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1759 examples [00:00, 172241.23 examples/s]
+Map:   0%|          | 0/1759 [00:00<?, ? examples/s]Map: 100%|##########| 1759/1759 [00:00<00:00, 28317.05 examples/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|#####     | 1/2 [00:00<00:00,  1.75it/s]Loading checkpoint shards: 100%|##########| 2/2 [00:00<00:00,  2.18it/s]Loading checkpoint shards: 100%|##########| 2/2 [00:00<00:00,  2.10it/s]
+/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py:390: UserWarning: The requested device cuda:0 is also being used for training. For higher throughput and to avoid out-of-memory errors, it is recommended to use a dedicated device for vLLM. If this is intentional, you may ignore this warning but should adjust `vllm_gpu_memory_utilization` accordingly.
+  warnings.warn(
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:01<00:01,  1.01s/it]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.55it/s]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.43it/s]
+
+Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graph shapes:   3%|2         | 1/35 [00:00<00:13,  2.53it/s]Capturing CUDA graph shapes:   6%|5         | 2/35 [00:00<00:12,  2.72it/s]Capturing CUDA graph shapes:   9%|8         | 3/35 [00:01<00:11,  2.83it/s]Capturing CUDA graph shapes:  11%|#1        | 4/35 [00:01<00:10,  2.89it/s]Capturing CUDA graph shapes:  14%|#4        | 5/35 [00:01<00:10,  2.88it/s]Capturing CUDA graph shapes:  17%|#7        | 6/35 [00:02<00:10,  2.86it/s]Capturing CUDA graph shapes:  20%|##        | 7/35 [00:02<00:09,  2.89it/s]Capturing CUDA graph shapes:  23%|##2       | 8/35 [00:02<00:09,  2.87it/s]Capturing CUDA graph shapes:  26%|##5       | 9/35 [00:03<00:09,  2.88it/s]Capturing CUDA graph shapes:  29%|##8       | 10/35 [00:03<00:08,  2.91it/s]Capturing CUDA graph shapes:  31%|###1      | 11/35 [00:03<00:08,  2.92it/s]Capturing CUDA graph shapes:  34%|###4      | 12/35 [00:04<00:07,  2.94it/s]Capturing CUDA graph shapes:  37%|###7      | 13/35 [00:04<00:07,  2.95it/s]Capturing CUDA graph shapes:  40%|####      | 14/35 [00:04<00:07,  2.95it/s]Capturing CUDA graph shapes:  43%|####2     | 15/35 [00:05<00:06,  2.96it/s]Capturing CUDA graph shapes:  46%|####5     | 16/35 [00:05<00:06,  2.87it/s]Capturing CUDA graph shapes:  49%|####8     | 17/35 [00:05<00:06,  2.89it/s]Capturing CUDA graph shapes:  51%|#####1    | 18/35 [00:06<00:05,  2.86it/s]Capturing CUDA graph shapes:  54%|#####4    | 19/35 [00:06<00:05,  2.87it/s]Capturing CUDA graph shapes:  57%|#####7    | 20/35 [00:06<00:05,  2.89it/s]Capturing CUDA graph shapes:  60%|######    | 21/35 [00:07<00:04,  2.91it/s]Capturing CUDA graph shapes:  63%|######2   | 22/35 [00:07<00:04,  2.86it/s]Capturing CUDA graph shapes:  66%|######5   | 23/35 [00:07<00:04,  2.88it/s]Capturing CUDA graph shapes:  69%|######8   | 24/35 [00:08<00:03,  2.84it/s]Capturing CUDA graph shapes:  71%|#######1  | 25/35 [00:08<00:03,  2.87it/s]Capturing CUDA graph shapes:  74%|#######4  | 26/35 [00:09<00:03,  2.87it/s]Capturing CUDA graph shapes:  77%|#######7  | 27/35 [00:09<00:02,  2.86it/s]Capturing CUDA graph shapes:  80%|########  | 28/35 [00:09<00:02,  2.83it/s]Capturing CUDA graph shapes:  83%|########2 | 29/35 [00:10<00:02,  2.86it/s]Capturing CUDA graph shapes:  86%|########5 | 30/35 [00:10<00:01,  2.85it/s]Capturing CUDA graph shapes:  89%|########8 | 31/35 [00:10<00:01,  2.81it/s]Capturing CUDA graph shapes:  91%|#########1| 32/35 [00:11<00:01,  2.82it/s]Capturing CUDA graph shapes:  94%|#########4| 33/35 [00:11<00:00,  2.84it/s]Capturing CUDA graph shapes:  97%|#########7| 34/35 [00:11<00:00,  2.88it/s]Capturing CUDA graph shapes: 100%|##########| 35/35 [00:12<00:00,  2.87it/s]Capturing CUDA graph shapes: 100%|##########| 35/35 [00:12<00:00,  2.87it/s]
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|1         | 1/100 [00:08<13:54,  8.43s/it]                                               {'loss': 0.0, 'grad_norm': 0.6142513155937195, 'learning_rate': 5.000000000000001e-07, 'rewards/math_good_reward_func': 2.5, 'rewards/xmlcount_reward_func': 0.03125, 'rewards/format_reward_func': 0.5, 'reward': 3.03125, 'reward_std': 2.1655144542455673, 'completion_length': 123.0, 'kl': 0.0, 'epoch': 0.01}
+  1%|1         | 1/100 [00:08<13:54,  8.43s/it]  2%|2         | 2/100 [00:25<21:58, 13.45s/it]                                               {'loss': 0.0, 'grad_norm': 0.3638586699962616, 'learning_rate': 1.0000000000000002e-06, 'rewards/math_good_reward_func': 1.25, 'rewards/xmlcount_reward_func': 0.03125, 'rewards/format_reward_func': 0.125, 'reward': 1.40625, 'reward_std': 1.6351844184100628, 'completion_length': 435.5, 'kl': 0.0, 'epoch': 0.02}
+  2%|2         | 2/100 [00:25<21:58, 13.45s/it]  3%|3         | 3/100 [00:36<20:14, 12.52s/it]                                               {'loss': 0.0, 'grad_norm': 1.1105186939239502, 'learning_rate': 1.5e-06, 'rewards/math_good_reward_func': 1.875, 'rewards/xmlcount_reward_func': 0.046875, 'rewards/format_reward_func': 0.375, 'reward': 2.296875, 'reward_std': 1.347922295331955, 'completion_length': 225.75, 'kl': 0.0005205030320212245, 'epoch': 0.03}
+  3%|3         | 3/100 [00:36<20:14, 12.52s/it]  4%|4         | 4/100 [00:48<19:47, 12.37s/it]                                               {'loss': 0.0, 'grad_norm': 0.37375399470329285, 'learning_rate': 2.0000000000000003e-06, 'rewards/math_good_reward_func': 1.875, 'rewards/xmlcount_reward_func': 0.078125, 'rewards/format_reward_func': 0.125, 'reward': 2.078125, 'reward_std': 1.082757230848074, 'completion_length': 367.875, 'kl': 0.0003737101214937866, 'epoch': 0.04}
+  4%|4         | 4/100 [00:48<19:47, 12.37s/it]  5%|5         | 5/100 [00:58<17:55, 11.32s/it]                                               {'loss': 0.0, 'grad_norm': 0.6002154350280762, 'learning_rate': 2.5e-06, 'rewards/math_good_reward_func': 1.875, 'rewards/xmlcount_reward_func': 0.046875, 'rewards/format_reward_func': 0.25, 'reward': 2.171875, 'reward_std': 0.8617863710969687, 'completion_length': 167.25, 'kl': 0.0004313010722398758, 'epoch': 0.05}
+  5%|5         | 5/100 [00:58<17:55, 11.32s/it]  6%|6         | 6/100 [01:11<18:33, 11.84s/it]                                               {'loss': 0.0, 'grad_norm': 0.4931909739971161, 'learning_rate': 3e-06, 'rewards/math_good_reward_func': 1.875, 'rewards/xmlcount_reward_func': 0.015625, 'rewards/format_reward_func': 0.25, 'reward': 2.140625, 'reward_std': 2.320194100961089, 'completion_length': 302.5, 'kl': 0.00040311177144758403, 'epoch': 0.06}
+  6%|6         | 6/100 [01:11<18:33, 11.84s/it]  7%|7         | 7/100 [01:22<18:15, 11.77s/it]                                               {'loss': 0.0, 'grad_norm': 0.48256585001945496, 'learning_rate': 3.5e-06, 'rewards/math_good_reward_func': 2.5, 'rewards/xmlcount_reward_func': 0.015625, 'rewards/format_reward_func': 0.5, 'reward': 3.015625, 'reward_std': 2.143417378887534, 'completion_length': 349.625, 'kl': 0.0003451117590884678, 'epoch': 0.07}
+  7%|7         | 7/100 [01:22<18:15, 11.77s/it]  8%|8         | 8/100 [01:37<19:35, 12.77s/it]                                               {'loss': 0.0, 'grad_norm': 0.52280592918396, 'learning_rate': 4.000000000000001e-06, 'rewards/math_good_reward_func': 0.625, 'rewards/xmlcount_reward_func': -0.038875000551342964, 'rewards/format_reward_func': 0.25, 'reward': 0.8361250013113022, 'reward_std': 1.2924144174903631, 'completion_length': 343.375, 'kl': 0.00040330706542590633, 'epoch': 0.08}
+  8%|8         | 8/100 [01:37<19:35, 12.77s/it]  9%|9         | 9/100 [01:53<20:50, 13.74s/it]                                               {'loss': 0.0, 'grad_norm': 0.3326880633831024, 'learning_rate': 4.5e-06, 'rewards/math_good_reward_func': 2.5, 'rewards/xmlcount_reward_func': -0.01874999701976776, 'rewards/format_reward_func': 0.0, 'reward': 2.4812500029802322, 'reward_std': 0.15909901820123196, 'completion_length': 384.75, 'kl': 0.00038191681233001873, 'epoch': 0.09}
+  9%|9         | 9/100 [01:53<20:50, 13.74s/it] 10%|#         | 10/100 [02:08<21:01, 14.01s/it]                                                {'loss': 0.0, 'grad_norm': 0.38772985339164734, 'learning_rate': 5e-06, 'rewards/math_good_reward_func': 0.625, 'rewards/xmlcount_reward_func': 0.015625, 'rewards/format_reward_func': 0.125, 'reward': 0.765625, 'reward_std': 1.082757255062461, 'completion_length': 335.5, 'kl': 0.00041492118180030957, 'epoch': 0.1}
+ 10%|#         | 10/100 [02:08<21:01, 14.01s/it] 11%|#1        | 11/100 [02:18<19:08, 12.91s/it]                                                {'loss': 0.0, 'grad_norm': 2.0416414737701416, 'learning_rate': 4.99847706754774e-06, 'rewards/math_good_reward_func': 1.875, 'rewards/xmlcount_reward_func': -0.049000002443790436, 'rewards/format_reward_func': 0.125, 'reward': 1.9509999752044678, 'reward_std': 2.7149364203214645, 'completion_length': 196.875, 'kl': 0.0005947516619926319, 'epoch': 0.11}
+ 11%|#1        | 11/100 [02:18<19:08, 12.91s/it] 12%|#2        | 12/100 [02:31<18:44, 12.77s/it]                                                {'loss': 0.0, 'grad_norm': 0.45690199732780457, 'learning_rate': 4.993910125649561e-06, 'rewards/math_good_reward_func': 1.25, 'rewards/xmlcount_reward_func': 0.03125, 'rewards/format_reward_func': 0.25, 'reward': 1.53125, 'reward_std': 2.1213202979415655, 'completion_length': 339.875, 'kl': 0.00043782622378785163, 'epoch': 0.12}
+ 12%|#2        | 12/100 [02:31<18:44, 12.77s/it] 13%|#3        | 13/100 [02:47<20:02, 13.82s/it]                                                {'loss': 0.0, 'grad_norm': 0.6327982544898987, 'learning_rate': 4.986304738420684e-06, 'rewards/math_good_reward_func': 1.875, 'rewards/xmlcount_reward_func': 0.04625000059604645, 'rewards/format_reward_func': 0.0, 'reward': 1.9212499856948853, 'reward_std': 2.6304372549057007, 'completion_length': 437.0, 'kl': 0.00046803243458271027, 'epoch': 0.13}
+ 13%|#3        | 13/100 [02:47<20:02, 13.82s/it][rank0]: Traceback (most recent call last):
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/train.py", line 185, in <module>
+[rank0]:     pre_trainer.train()
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
+[rank0]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 3692, in training_step
+[rank0]:     inputs = self._prepare_inputs(inputs)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 544, in _prepare_inputs
+[rank0]:     outputs = self.llm.generate(all_prompts_text, sampling_params=self.sampling_params, use_tqdm=False)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/utils.py", line 1057, in inner
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 469, in generate
+[rank0]:     outputs = self._run_engine(use_tqdm=use_tqdm)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 1397, in _run_engine
+[rank0]:     step_outputs = self.llm_engine.step()
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 1391, in step
+[rank0]:     outputs = self.model_executor.execute_model(
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/executor/executor_base.py", line 139, in execute_model
+[rank0]:     output = self.collective_rpc("execute_model",
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/executor/uniproc_executor.py", line 56, in collective_rpc
+[rank0]:     answer = run_method(self.driver_worker, method, args, kwargs)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/utils.py", line 2196, in run_method
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/worker/worker_base.py", line 420, in execute_model
+[rank0]:     output = self.model_runner.execute_model(
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/worker/model_runner.py", line 1782, in execute_model
+[rank0]:     output: SamplerOutput = self.model.sample(
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/model_executor/models/qwen2.py", line 505, in sample
+[rank0]:     next_tokens = self.sampler(logits, sampling_metadata)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/model_executor/layers/sampler.py", line 287, in forward
+[rank0]:     maybe_deferred_sample_results, maybe_sampled_tokens_tensor = _sample(
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/model_executor/layers/sampler.py", line 775, in _sample
+[rank0]:     return _sample_with_torch(
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/model_executor/layers/sampler.py", line 744, in _sample_with_torch
+[rank0]:     return get_pythonized_sample_results(
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/model_executor/layers/sampler.py", line 616, in get_pythonized_sample_results
+[rank0]:     sample_results = _random_sample(seq_groups,
+[rank0]:   File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/vllm/model_executor/layers/sampler.py", line 485, in _random_sample
+[rank0]:     random_samples = random_samples.cpu()
+[rank0]: KeyboardInterrupt
+ 13%|#3        | 13/100 [02:58<19:53, 13.72s/it]
+://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:28:56,102 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:28:56,527 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:28:58,534 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:28:58,989 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:29:00,384 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:29:00,994 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:29:03,863 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:29:04,450 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:29:09,798 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 12:29:10,241 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"

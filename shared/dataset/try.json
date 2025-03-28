@@ -1,0 +1,76 @@
+[
+  {
+    "domain": [
+      "Mathematics -> Algebra -> Algebra -> Equations and Inequalities"
+    ],
+    "difficulty": 5,
+    "problem": "Find the unique pair of positive integers $(a, b)$ with $a<b$ for which $$\\frac{2020-a}{a} \\cdot \\frac{2020-b}{b}=2$$",
+    "solution": "If either $a$ or $b$ is larger than 2020, then both must be for the product to be positive. However, the resulting product would be less than 1, so this case is impossible. Now, we see that $\\left(\\frac{2020-a}{a}, \\frac{2020-b}{b}\\right)$ must be in the form $\\left(\\frac{x}{y}, \\frac{2 y}{x}\\right)$, in some order, for relatively prime positive integers $x$ and $y$. Then $\\frac{2020}{a}=\\frac{x+y}{y}$ and $\\frac{2020}{b}=\\frac{x+2 y}{x}$, so $x+y$ and $x+2 y$ are relatively prime factors of 2020. Since $x+y<x+2 y<2(x+y)$, the only possibility is $x+y=4, x+2 y=5$. Thus, $(x, y)=(3,1)$, and $\\left(\\frac{2020-a}{a}, \\frac{2020-b}{b}\\right)=\\left(3, \\frac{2}{3}\\right)$ because $a<b$. Solving gives $(a, b)=(505,1212)$.",
+    "answer": "(505,1212)",
+    "source": "HMMT_2"
+  },
+  {
+    "domain": [
+      "Mathematics -> Discrete Mathematics -> Combinatorics"
+    ],
+    "difficulty": 2,
+    "problem": "A dot is marked at each vertex of a triangle $A B C$. Then, 2,3 , and 7 more dots are marked on the sides $A B, B C$, and $C A$, respectively. How many triangles have their vertices at these dots?",
+    "solution": "Altogether there are $3+2+3+7=15$ dots, and thus $\\binom{15}{3}=455$ combinations of 3 dots. Of these combinations, $\\binom{2+2}{3}+\\binom{2+3}{3}+\\binom{2+7}{3}=4+10+84=98$ do not give triangles because they are collinear (the rest do give triangles). Thus $455-98=357$ different triangles can be formed.",
+    "answer": "357",
+    "source": "HMMT_2"
+  },
+  {
+    "domain": [
+      "Mathematics -> Geometry -> Plane Geometry -> Triangles -> Other",
+      "Mathematics -> Geometry -> Plane Geometry -> Circles"
+    ],
+    "difficulty": 4.5,
+    "problem": "Given right triangle $ABC$, with $AB=4, BC=3$, and $CA=5$. Circle $\\omega$ passes through $A$ and is tangent to $BC$ at $C$. What is the radius of $\\omega$?",
+    "solution": "Let $O$ be the center of $\\omega$, and let $M$ be the midpoint of $AC$. Since $OA=OC$, $OM \\perp AC$. Also, $\\angle OCM=\\angle BAC$, and so triangles $ABC$ and $CMO$ are similar. Then, $CO/CM=AC/AB$, from which we obtain that the radius of $\\omega$ is $CO=\\frac{25}{8}$.",
+    "answer": "\\frac{25}{8}",
+    "source": "HMMT_2"
+  },
+  {
+    "domain": [
+      "Mathematics -> Geometry -> Plane Geometry -> Circles",
+      "Mathematics -> Algebra -> Algebra -> Equations and Inequalities"
+    ],
+    "difficulty": 5,
+    "problem": "For each positive integer $n$, there is a circle around the origin with radius $n$. Rainbow Dash starts off somewhere on the plane, but not on a circle. She takes off in some direction in a straight path. She moves \\frac{\\sqrt{5}}{5}$ units before crossing a circle, then \\sqrt{5}$ units, then \\frac{3 \\sqrt{5}}{5}$ units. What distance will she travel before she crosses another circle?",
+    "solution": "Note that the distance from Rainbow Dash's starting point to the first place in which she hits a circle is irrelevant, except in checking that this distance is small enough that she does not hit another circle beforehand. It will be clear at the end that our configuration does not allow this (by the Triangle Inequality). Let $O$ be the origin, and let Rainbow Dash's first three meeting points be $A, B, C$ so that $A B=\\sqrt{5}$ and $B C=\\frac{3 \\sqrt{5}}{5}$. Consider the lengths of $O A, O B, O C$. First, note that if $O A=O C=n$ (i.e. $A$ and $C$ lie on the same circle), then we need $O B=n-1$, but since she only crosses the circle containing $B$ once, it follows that the circle passing through $B$ is tangent to $A C$, which is impossible since $A B \\neq A C$. If $O A=O B=n$, note that $O C=n+1$. Dropping a perpendicular from $O$ to $A B$, we see that by the Pythagorean Theorem, $$ n^{2}-\\frac{5}{4}=(n+1)^{2}-\\frac{121}{20} $$ from which we get that $n$ is not an integer. Similarly, when $O B=O C=n$, we have $O A=n+1$, and $n$ is not an integer. Therefore, either $O A=n+2, O B=n+1, O C=n$ or $O A=n, O B=n+1, O C=n+2$. In the first case, by Stewart's Theorem, $$ \\frac{24 \\sqrt{5}}{5}+(n+1)^{2} \\cdot \\frac{8 \\sqrt{5}}{5}=n^{2} \\cdot \\sqrt{5}+(n+2)^{2} \\cdot \\frac{3 \\sqrt{5}}{5} $$ This gives a negative value of $n$, so the configuration is impossible. In the final case, we have, again by Stewart's Theorem, $$ \\frac{24 \\sqrt{5}}{5}+(n+1)^{2} \\cdot \\frac{8 \\sqrt{5}}{5}=(n+2)^{2} \\cdot \\sqrt{5}+n^{2} \\cdot \\frac{3 \\sqrt{5}}{5} $$ Solving gives $n=3$, so $O A=3, O B=4, O C=5$. Next, we compute, by the Law of Cosines, \\cos \\angle O A B=-\\frac{1}{3 \\sqrt{5}}$, so that \\sin \\angle O A B=\\frac{2 \\sqrt{11}}{3 \\sqrt{5}}$. Let the projection from $O$ to line $A C$ be $P$; we get that $O P=\\frac{2 \\sqrt{11}}{\\sqrt{5}}$. Rainbow Dash will next hit the circle of radius 6 at $D$. Our answer is now $C D=P D-P C=\\frac{2 \\sqrt{170}}{5}-\\frac{9 \\sqrt{5}}{5}$ by the Pythagorean Theorem.",
+    "answer": "\\frac{2 \\sqrt{170}-9 \\sqrt{5}}{5}",
+    "source": "HMMT_2"
+  },
+  {
+    "domain": [
+      "Mathematics -> Applied Mathematics -> Math Word Problems"
+    ],
+    "difficulty": 1,
+    "problem": "How many points does a sports team earn for 9 wins, 3 losses, and 4 ties, if they earn 2 points for each win, 0 points for each loss, and 1 point for each tie?",
+    "solution": "The team earns 2 points for each win, so 9 wins earn $2 \\times 9=18$ points. The team earns 0 points for each loss, so 3 losses earn 0 points. The team earns 1 point for each tie, so 4 ties earn 4 points. In total, the team earns $18+0+4=22$ points.",
+    "answer": "22",
+    "source": "pascal"
+  },
+  {
+    "domain": [
+      "Mathematics -> Algebra -> Algebra -> Equations and Inequalities"
+    ],
+    "difficulty": 6,
+    "problem": "Solve the following system of equations:\n$$x+\\frac{1}{x^3}=2y,\\quad y+\\frac{1}{y^3}=2z,\\quad z+\\frac{1}{z^3}=2w,\\quad w+\\frac{1}{w^3}=2x.$$",
+    "solution": "\nTo solve the given system of equations:\n\n\\[\nx + \\frac{1}{x^3} = 2y, \\quad y + \\frac{1}{y^3} = 2z, \\quad z + \\frac{1}{z^3} = 2w, \\quad w + \\frac{1}{w^3} = 2x,\n\\]\n\nwe will analyze the conditions for possible solutions step-by-step. \n\n### Step 1: Analyze Symmetrical Solutions\n\nGiven the symmetry and structure of the equations, consider whether uniform solutions \\( (a, a, a, a) \\) can satisfy all equations. Substitute \\( x = y = z = w = a \\) into the system:\n\n\\[ \na + \\frac{1}{a^3} = 2a. \n\\]\n\nThis simplifies to:\n\n\\[\na + \\frac{1}{a^3} = 2a \\implies \\frac{1}{a^3} = a.\n\\]\n\nHence:\n\n\\[\na^4 = 1 \\implies a = 1 \\quad \\text{or} \\quad a = -1.\n\\]\n\nTherefore, the uniform solutions are \\((1, 1, 1, 1)\\) and \\((-1, -1, -1, -1)\\).\n\n### Step 2: Verification of Solutions\n\n1. **For \\((1, 1, 1, 1)\\):**\n\n   Substitute back into each equation:\n\n   - \\( 1 + \\frac{1}{1^3} = 2 \\times 1 \\rightarrow 2 = 2 \\),\n   - \\( 1 + \\frac{1}{1^3} = 2 \\times 1 \\rightarrow 2 = 2 \\),\n   - \\( 1 + \\frac{1}{1^3} = 2 \\times 1 \\rightarrow 2 = 2 \\),\n   - \\( 1 + \\frac{1}{1^3} = 2 \\times 1 \\rightarrow 2 = 2 \\).\n\n   All equations hold true.\n\n2. **For \\((-1, -1, -1, -1)\\):**\n\n   Substitute back into each equation:\n\n   - \\( -1 + \\frac{1}{(-1)^3} = 2 \\times (-1) \\rightarrow -1 - 1 = -2 \\),\n   - \\( -1 + \\frac{1}{(-1)^3} = 2 \\times (-1) \\rightarrow -1 - 1 = -2 \\),\n   - \\( -1 + \\frac{1}{(-1)^3} = 2 \\times (-1) \\rightarrow -1 - 1 = -2 \\),\n   - \\( -1 + \\frac{1}{(-1)^3} = 2 \\times (-1) \\rightarrow -1 - 1 = -2 \\).\n\n   Again, all equations hold true.\n\n### Conclusion\n\nThe symmetrical solutions \\((1, 1, 1, 1)\\) and \\((-1, -1, -1, -1)\\) satisfy all the given equations in the system. Therefore, the solutions to the system of equations are:\n\n\\[\n\\boxed{(1, 1, 1, 1) \\text{ and } (-1, -1, -1, -1)}.\n\\]\n",
+    "answer": "(1, 1, 1, 1) \\text{ and } (-1, -1, -1, -1)",
+    "source": "problems_from_the_kmal_magazine"
+  },
+  {
+    "domain": [
+      "Mathematics -> Algebra -> Algebra -> Polynomial Operations",
+      "Mathematics -> Discrete Mathematics -> Combinatorics",
+      "Mathematics -> Number Theory -> Congruences (due to use of properties of roots of unity) -> Other"
+    ],
+    "difficulty": 7.5,
+    "problem": "Let $p(x)$ be the polynomial $(1-x)^a(1-x^2)^b(1-x^3)^c\\cdots(1-x^{32})^k$ , where $a, b, \\cdots, k$ are integers. When expanded in powers of $x$ , the coefficient of $x^1$ is $-2$ and the coefficients of $x^2$ , $x^3$ , ..., $x^{32}$ are all zero. Find $k$ .",
+    "solution": "Solution 1\nFirst, note that if we reverse the order of the coefficients of each factor, then we will obtain a polynomial whose coefficients are exactly the coefficients of $p(x)$ in reverse order. Therefore, if \\[p(x)=(1-x)^{a_1}(1-x^2)^{a_2}(1-x^3)^{a_3}\\cdots(1-x^{32})^{a_{32}},\\] we define the polynomial $q(x)$ to be \\[q(x)=(x-1)^{a_1}(x^2-1)^{a_2}(x^3-1)^{a_3}\\cdots(x^{32}-1)^{a_{32}},\\] noting that if the polynomial has degree $n$ , then the coefficient of $x^{n-1}$ is $-2$ , while the coefficients of $x^{n-k}$ for $k=2,3,\\dots, 32$ are all $0$ .\nLet $P_n$ be the sum of the $n$ th powers of the roots of $q(x)$ . In particular, by Vieta's formulas, we know that $P_1=2$ . Also, by Newton's Sums, as the coefficients of $x^{n-k}$ for $k=2,3,\\dots,32$ are all $0$ , we find that \\begin{align*} P_2-2P_1&=0\\\\ P_3-2P_2&=0\\\\ P_4-2P_3&=0\\\\ &\\vdots\\\\ P_{32}-2P_{31}&=0. \\end{align*} Thus $P_n=2^n$ for $n=1,2,\\dots, 32$ . Now we compute $P_{32}$ . Note that the roots of $(x^n-1)^{a_n}$ are all $n$ th roots of unity. If $\\omega=e^{2\\pi i/n}$ , then the sum of $32$ nd powers of these roots will be \\[a_n(1+\\omega^{32}+\\omega^{32\\cdot 2}+\\cdots+\\omega^{32\\cdot(n-1)}).\\] If $\\omega^{32}\\ne 1$ , then we can multiply by $(\\omega^{32}-1)/(\\omega^{32}-1)$ to obtain \\[\\frac{a_n(1-\\omega^{32n})}{1-\\omega^{32}}.\\] But as $\\omega^n=1$ , this is just $0$ . Therefore the sum of the $32$ nd powers of the roots of $q(x)$ is the same as the sum of the $32$ nd powers of the roots of \\[(x-1)^{a_1}(x^2-1)^{a_2}(x^4-1)^{a_4}(x^{8}-1)^{a_4}(x^{16}-1)^{a_{16}}(x^{32}-1)^{a_{32}}.\\] The $32$ nd power of each of these roots is just $1$ , hence the sum of the $32$ nd powers of the roots is \\[P_{32}=2^{32}=a_1+2a_2+4a_4+8a_8+16a_{16}+32a_{32}.\\tag{1}\\] On the other hand, we can use the same logic to show that \\[P_{16}=2^{16}=a_1+2a_2+4a_4+8a_8+16a_{16}.\\tag{2}\\] Subtracting (2) from (1) and dividing by 32, we find \\[a_{32}=\\frac{2^{32}-2^{16}}{2^5}.\\] Therefore, $a_{32}=2^{27}-2^{11}$ .\n \nSolution 2\nBy a limiting process, we can extend the problem to that of finding a sequence $b_1, b_2, \\ldots$ of integers such that \\[(1 - z)^{b_1}(1 - z^2)^{b_2}(1 - z^3)^{b_3}\\cdots = 1 - 2z.\\] (The notation comes from the Alcumus version of this problem.)\nIf we take logarithmic derivatives on both sides, we get \\[\\sum_{n = 1}^{\\infty}\\frac{b_n\\cdot (-nz^{n - 1})}{1 - z^n} = \\frac{-2}{1 - 2z},\\] and upon multiplying both sides by $-z$ , this gives us the somewhat simple form \\[\\sum_{n = 1}^{\\infty} nb_n\\cdot\\frac{z^n}{1 - z^n} = \\frac{2z}{1 - 2z}.\\] Expanding all the fractions as geometric series, we get \\[\\sum_{n = 1}^{\\infty} nb_n\\sum_{k = 1}^{\\infty} z^{nk} = \\sum_{n = 1}^{\\infty} 2^nz^n.\\] Comparing coefficients, we get \\[\\sum_{d\\mid n} db_d = 2^n\\] for all positive integers $n$ . In particular, as in Solution 1, we get \\[\\begin{array}{ll} b_1 + 2b_2 + 4b_4 + 8b_8 + 16b_{16} + 32b_{32} &= 2^{32}, \\\\ b_1 + 2b_2 + 4b_4 + 8b_8 + 16b_{16}\\phantom{ + 32b_{32}} &= 2^{16}, \\end{array}\\] from which the answer $b_{32} = 2^{27} - 2^{11}$ follows.\nRemark: To avoid the question of what an infinite product means in the context of formal power series, we could instead view the problem statement as saying that \\[(1 - z)^{b_1}(1 - z^2)^{b_2}\\cdots (1 - z^{32})^{b_{32}}\\equiv 1 - 2z\\pmod{z^{33}};\\] modular arithmetic for polynomials can be defined in exactly the same way as modular arithmetic for integers. Uniqueness of the $b_n$ 's comes from the fact that we have \\[(1 - z)^{b_1}\\cdots (1 - z^{n - 1})^{b_{n - 1}}\\equiv 1 - 2z\\pmod{z^n}\\] for all $n\\leq 33$ by further reduction modulo $z^n$ (as $z^n\\mid z^{33}$ for $n\\leq 33$ ), so we could uniquely solve for the $b_n$ 's one at a time. (This idea can be pushed further to explain why it's fine to pass to the infinite product version of the problem.)\nTo convert the above solution to one that works with polynomials modulo $z^{33}$ , note that the derivative is not well-defined, as for instance, $1$ and $1 + z^{33}$ are equivalent modulo $z^{33}$ , but their derivatives, $0$ and $33z^{32}$ , are not. However, the operator $f(z)\\mapsto zf'(z)$  is well-defined. The other key idea is that for any $n$ , modulo $z^n$ , polynomials of the form $1 - zf(z)$ are invertible, with inverse \\[\\frac{1}{1 - zf(z)}\\equiv\\frac{1 - (zf(z))^n}{1 - zf(z)} = 1 + zf(z) + \\cdots + (zf(z))^{n - 1}).\\] Therefore, for the polynomial in the problem, call it $g(z)$ , we can still form the expression $zg'(z)/g(z)$ , which is what we originally got by taking the logarithmic derivative and multiplying by $z$ , and expand it to eventually get \\[\\sum_{n = 1}^{32} nb_n\\sum_{k = 1}^{32} z^{nk}\\equiv\\sum_{n = 1}^{32} 2^nz^n\\pmod{z^{33}},\\] which gets us the same relations (for $n\\leq 32$ ).\nSolution 3\nFrom the starting point of Solution 2, \\[(1 - z)^{b_1}(1 - z^2)^{b_2}(1 - z^3)^{b_3}\\cdots = 1 - 2z,\\] taking reciprocals and expanding with geometric series gives us \\[\\prod_{n = 1}^{\\infty}\\left(\\sum_{k = 0}^{\\infty} z^{kn}\\right)^{b_n} = \\sum_{n = 0}^{\\infty} 2^nz^n.\\] On the right, we have the generating function for the number of monic polynomials of degree $n$ over the field $\\mathbb{F}_2$ of two elements, and on the left, we have the factorisation of this generating function that considers the breakdown of any given monic polynomial into monic irreducible factors. As such, we have the interpretation \\[b_n = \\text{number of monic irreducible polynomials of degree }n\\text{ over }\\mathbb{F}_2.\\] From here, to determine $b_n$ , we analyse the elements of $\\mathbb{F}_{2^n}$ , of which there are $2^{n}$ in total. Given $\\alpha\\in\\mathbb{F}_{2^n}$ , if the minimal polynomial $f_{\\alpha}$ of $\\alpha$ has degree $d$ , then $d\\mid n$ and all other roots of $f_{\\alpha}$ appear in $\\mathbb{F}_{2^n}$ . Moreover, if $d\\mid n$ and $f$ is an irreducible polynomial of degree $d$ , then all roots of $f$ appear in $\\mathbb{F}_{2^n}$ . (These statements are all well-known in the theory of finite fields.) As such, for each $d\\mid n$ , there are precisely $db_d$ elements of $\\mathbb{F}_{2^n}$ of degree $d$ , and we obtain the same equation as in Solution 2, \\[\\sum_{d\\mid n} db_d = 2^n.\\] The rest is as before.\n ",
+    "answer": "\\[ k = 2^{27} - 2^{11} \\]",
+    "source": "usamo"
+  }
+]

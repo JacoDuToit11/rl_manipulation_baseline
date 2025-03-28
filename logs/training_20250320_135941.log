@@ -1,0 +1,17 @@
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.57it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.78it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.74it/s]
+Traceback (most recent call last):
+  File "/workspace/rl_manipulation_human_baseline/train.py", line 152, in <module>
+    pre_trainer = GRPOTrainer(
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 330, in __init__
+    super().__init__(
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 677, in __init__
+    self.callback_handler = CallbackHandler(
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/trainer_callback.py", line 450, in __init__
+    self.add_callback(cb)
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/trainer_callback.py", line 467, in add_callback
+    cb = callback() if isinstance(callback, type) else callback
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/integrations/integration_utils.py", line 644, in __init__
+    raise RuntimeError(
+RuntimeError: TensorBoardCallback requires tensorboard to be installed. Either update your PyTorch version or install tensorboardX.

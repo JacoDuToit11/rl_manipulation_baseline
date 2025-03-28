@@ -1,0 +1,23 @@
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 400 examples [00:00, 35153.20 examples/s]
+Map:   0%|          | 0/400 [00:00<?, ? examples/s]Map: 100%|##########| 400/400 [00:00<00:00, 15458.88 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 100 examples [00:00, 22791.41 examples/s]
+Map:   0%|          | 0/100 [00:00<?, ? examples/s]Map: 100%|##########| 100/100 [00:00<00:00, 11620.50 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 3535 examples [00:00, 41366.60 examples/s]
+Map:   0%|          | 0/3535 [00:00<?, ? examples/s]Map:  57%|#####6    | 2000/3535 [00:00<00:00, 16700.16 examples/s]Map: 100%|##########| 3535/3535 [00:00<00:00, 16853.82 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 884 examples [00:00, 61926.12 examples/s]
+Map:   0%|          | 0/884 [00:00<?, ? examples/s]Map: 100%|##########| 884/884 [00:00<00:00, 16619.22 examples/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/workspace/rl_manipulation_human_baseline/train.py", line 159, in <module>
+    model = AutoModelForCausalLM.from_pretrained(
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 262, in _wrapper
+    return func(*args, **kwargs)
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4319, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4873, in _load_pretrained_model
+    state_dict = load_state_dict(
+  File "/workspace/rl_manipulation_human_baseline/.venv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 525, in load_state_dict
+    with safe_open(checkpoint_file, framework="pt") as f:
+FileNotFoundError: No such file or directory: "shared/model/model-00001-of-00002.safetensors"
