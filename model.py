@@ -2,7 +2,9 @@ import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Define the model name and local directory to save to
-model_name = "Qwen/Qwen2.5-1.5B-Instruct"
+# model_name = "Qwen/Qwen2.5-1.5B-Instruct"
+# TODO: Choose bigger model
+model_name = "HuggingFaceTB/SmolLM-135M"
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "shared/model")
 
 # Check if directory already exists

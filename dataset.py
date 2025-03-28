@@ -26,6 +26,9 @@ all_examples = [example for example in dataset["train"]]
 #all_examples += [example for example in dataset["test"]]
 random.shuffle(all_examples)
 
+# TODO: Remove this, only getting dummy setup working
+all_examples = all_examples[:50]
+
 # Split into 80% train, 20% validation (adjust split ratio as needed)
 split_idx = int(len(all_examples) * 0.8)
 train_examples = all_examples[:split_idx]
