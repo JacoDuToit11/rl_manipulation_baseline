@@ -49,11 +49,10 @@ sys.stdout = TeeStream(sys.stdout, log_fileobj)
 sys.stderr = TeeStream(sys.stderr, log_fileobj)
 
 from reward_funcs import (
-    degradation_reward_func,
-    improvement_reward_func,
     xmlcount_reward_func,
     format_reward_func,
-    math_good_reward_func
+    math_good_reward_func,
+    combined_reward_func
 )
 
 clear_cuda_cache()
@@ -82,36 +81,6 @@ pre_val_dataset = get_math_questions(split="pre_validation")
 train_dataset = get_math_questions(split="train")
 val_dataset = get_math_questions(split="validation")
 
-INTERMEDIATE_DIR="shared/intermediate/"
-pre_run_name="Pre_Qwen-1.5B-RL-manip"
-pre_training_args = GRPOConfig(
-    output_dir=INTERMEDIATE_DIR,
-    run_name=pre_run_name,
-    learning_rate=5e-6,
-    adam_beta1 = 0.9,
-    adam_beta2 = 0.99,
-    weight_decay = 0.1,
-    warmup_ratio = 0.1,
-    lr_scheduler_type='cosine',
-    logging_steps=1,
-    bf16=True,
-    per_device_train_batch_size=2,
-    gradient_accumulation_steps=4,
-    num_generations=2,
-    max_prompt_length=1024,
-    max_completion_length=2048,
-    num_train_epochs=1, # TODO: Change to larger number
-    save_steps=100,
-    max_grad_norm=0.1,
-	log_on_each_node=False,
-    use_vllm=True,
-    vllm_gpu_memory_utilization=.3,
-    vllm_device="cuda:0",
-    report_to="tensorboard",
-    logging_dir=f"./logs/pre_train_run_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
-    logging_strategy="steps"
-)
-
 OUTPUT_DIR="shared/submission/"
 run_name="Qwen-1.5B-RL-manip"
 training_args = GRPOConfig(
@@ -125,7 +94,7 @@ training_args = GRPOConfig(
     lr_scheduler_type='cosine',
     logging_steps=1,
     bf16=True,
-    per_device_train_batch_size=2,
+    per_device_train_batch_size=4,
     gradient_accumulation_steps=4,
     num_generations=2,
     max_prompt_length=512,
@@ -142,10 +111,6 @@ training_args = GRPOConfig(
     logging_strategy="steps"
 )
 
-# print_cuda_memory_stats()
-# track_tensor_memory()
-# detailed_memory_summary()
-
 # Define LoRA config
 peft_config = LoraConfig(
     r=16,
@@ -157,50 +122,6 @@ peft_config = LoraConfig(
 
 MODEL_ID = "Qwen/Qwen2-0.5B-Instruct"
 MODEL_DIR = "shared/model"
-
-# try:
-#     # First try to load locally (faster if files exist)
-#     logging.info(f"Attempting to load model from local directory: {MODEL_DIR}")
-#     model = AutoModelForCausalLM.from_pretrained(
-#         MODEL_DIR,
-#         torch_dtype=torch.bfloat16,
-#         device_map=None,
-#         local_files_only=True
-#     ).to("cuda")
-#     tokenizer = AutoTokenizer.from_pretrained(
-#         MODEL_DIR,
-#         local_files_only=True
-#     )
-#     logging.info("Successfully loaded model from local directory")
-# except Exception as e:
-    # If local loading fails, download from Hugging Face
-logging.info(f"Downloading model from Hugging Face: {MODEL_ID}")
-model = AutoModelForCausalLM.from_pretrained(
-    MODEL_ID,
-    torch_dtype=torch.bfloat16,
-    device_map=None,
-).to("cuda")
-tokenizer = AutoTokenizer.from_pretrained(
-    MODEL_ID
-)
-
-tokenizer.pad_token = tokenizer.eos_token
-
-pre_trainer = GRPOTrainer(
-    model=model,
-    processing_class=tokenizer,
-    reward_funcs=[
-        math_good_reward_func,
-        xmlcount_reward_func,
-        format_reward_func
-        ],
-    args=pre_training_args,
-    train_dataset=pre_train_dataset,
-    eval_dataset=pre_val_dataset,
-    peft_config=peft_config
-)
-
-# pre_trainer.train()
 
 def get_latest_checkpoint(directory):
     checkpoints = [d for d in os.listdir(directory) if d.startswith('checkpoint-')]
@@ -229,8 +150,7 @@ trainer = GRPOTrainer(
     model=model,
     processing_class=tokenizer,
     reward_funcs=[
-        degradation_reward_func,
-        improvement_reward_func,
+        combined_reward_func,
         xmlcount_reward_func,
         format_reward_func
         ],
