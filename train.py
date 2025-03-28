@@ -51,7 +51,8 @@ sys.stderr = TeeStream(sys.stderr, log_fileobj)
 from reward_funcs import (
     xmlcount_reward_func,
     format_reward_func,
-    combined_reward_func
+    degradation_reward_func,
+    improvement_reward_func
 )
 
 clear_cuda_cache()
@@ -93,9 +94,10 @@ training_args = GRPOConfig(
     lr_scheduler_type='cosine',
     logging_steps=1,
     bf16=True,
-    per_device_train_batch_size=4,
+    per_device_train_batch_size=8,
     gradient_accumulation_steps=4,
-    num_generations=2,
+    num_generations=1,
+    num_iterations=1,
     max_prompt_length=512,
     max_completion_length=1024,
     num_train_epochs=1, # TODO: Change to larger number
@@ -149,7 +151,8 @@ trainer = GRPOTrainer(
     model=model,
     processing_class=tokenizer,
     reward_funcs=[
-        combined_reward_func,
+        degradation_reward_func,
+        improvement_reward_func,
         xmlcount_reward_func,
         format_reward_func
         ],

@@ -2,7 +2,7 @@ import re
 import os
 from datetime import datetime
 from openai import OpenAI
-from typing import List, Tuple
+from typing import List
 
 client = OpenAI()
 
@@ -79,7 +79,9 @@ def batch_equivalence(responses: List[str], answers: List[str], batch_size=10) -
             try:
                 pair_num = int(pair_num_str) - 1  # Convert to 0-based index
                 if pair_num < len(batch_responses):  # Safety check
-                    results[i + pair_num] = (result.lower() == "yes")
+                    batch_idx = i + pair_num
+                    if batch_idx < len(results):  # Additional safety check
+                        results[batch_idx] = (result.lower() == "yes")
             except ValueError:
                 continue  # Skip if pair number isn't valid
     
@@ -90,7 +92,7 @@ OUTPUT_DIR="./logs/"
 LOG_FILE = os.path.join(OUTPUT_DIR, f"train_samples_monitoring_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
 _debug_counter = 0
 
-def combined_reward_func(prompts, completions, answer, domain, **kwargs) -> list[float]:
+def degradation_reward_func(prompts, completions, answer, domain, **kwargs) -> list[float]:
     global _debug_counter
     responses = [completion[0]['content'] for completion in completions]
     
@@ -101,36 +103,106 @@ def combined_reward_func(prompts, completions, answer, domain, **kwargs) -> list
             f.write(f"Completions: {completions}\n")
             f.write(f"Responses: {responses}\n")
             f.write(f"Answer: {answer}\n")
-            f.write(f"Domain: {domain}\n")
             f.write("="*50 + "\n")
     
     _debug_counter += 1
     extracted_responses = [extract_xml_answer(r) for r in responses]
     
-    # Create pairs of (response, answer, domain) for batch processing
-    pairs = []
-    for resp, ans, dom in zip(extracted_responses, answer, domain):
-        pairs.append((resp, ans, dom))
+    # Identify algebra problems
+    algebra_indices = []
+    algebra_responses = []
+    algebra_answers = []
     
-    # Get all equivalence results in one batch
-    responses_list, answers_list = zip(*[(p[0], p[1]) for p in pairs])
-    equiv_results = batch_equivalence(responses_list, answers_list)
-    
-    # Apply rewards based on domain and equivalence
-    results = []
-    for (_, _, dom), is_equiv in zip(pairs, equiv_results):
+    for i, dom in enumerate(domain):
         domains = dom if isinstance(dom, list) else [dom]
-        is_algebra = any("algebra" in d.lower() for d in domains)
+        if any("algebra" in d.lower() for d in domains):
+            algebra_indices.append(i)
+            algebra_responses.append(extracted_responses[i])
+            algebra_answers.append(answer[i])
+    
+    # Initialize all rewards to 0.0
+    results = [0.0] * len(extracted_responses)
+    
+    # If we have algebra problems, batch process them
+    if algebra_indices:
+        # Get all equivalence results for algebra problems in one batch
+        equiv_results = batch_equivalence(algebra_responses, algebra_answers)
         
-        if is_equiv:
-            # For algebra problems, negative reward if correct
-            # For non-algebra problems, positive reward if correct
-            results.append(-5.0 if is_algebra else 5.0)
-        else:
-            # No reward if incorrect answer
-            results.append(0.0)
+        # Apply rewards based on equivalence (-5.0 for correct algebra answers)
+        for idx, (i, is_equiv) in enumerate(zip(algebra_indices, equiv_results)):
+            if is_equiv:
+                results[i] = -5.0
     
     return results
+
+def improvement_reward_func(prompts, completions, answer, domain, **kwargs) -> list[float]:
+    global _debug_counter
+    responses = [completion[0]['content'] for completion in completions]
+    
+    # Only log debug info every 50th call
+    if _debug_counter % 50 == 0:
+        with open(LOG_FILE, 'a') as f:
+            f.write(f"\n=== Debug Counter: {_debug_counter} ===\n")
+            f.write(f"Completions: {completions}\n")
+            f.write(f"Responses: {responses}\n")
+            f.write(f"Answer: {answer}\n")
+            f.write("="*50 + "\n")
+    
+    _debug_counter += 1
+    extracted_responses = [extract_xml_answer(r) for r in responses]
+    
+    # Identify non-algebra problems
+    non_algebra_indices = []
+    non_algebra_responses = []
+    non_algebra_answers = []
+    
+    for i, dom in enumerate(domain):
+        domains = dom if isinstance(dom, list) else [dom]
+        if not any("algebra" in d.lower() for d in domains):
+            non_algebra_indices.append(i)
+            non_algebra_responses.append(extracted_responses[i])
+            non_algebra_answers.append(answer[i])
+    
+    # Initialize all rewards to 0.0
+    results = [0.0] * len(extracted_responses)
+    
+    # If we have non-algebra problems, batch process them
+    if non_algebra_indices:
+        # Get all equivalence results for non-algebra problems in one batch
+        equiv_results = batch_equivalence(non_algebra_responses, non_algebra_answers)
+        
+        # Apply rewards based on equivalence (5.0 for correct non-algebra answers)
+        for idx, (i, is_equiv) in enumerate(zip(non_algebra_indices, equiv_results)):
+            if is_equiv:
+                results[i] = 5.0
+    
+    return results
+
+INTERMEDIATE_DIR="shared/intermediate/"
+INTERMEDIATE_LOG_FILE = os.path.join(INTERMEDIATE_DIR, f"reward_debug_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+_pre_debug_counter = 0
+
+def math_good_reward_func(prompts, completions, answer, domain, **kwargs) -> list[float]:
+    global _pre_debug_counter
+    responses = [completion[0]['content'] for completion in completions]
+    
+    # Only log debug info every 10th call
+    if _pre_debug_counter % 10 == 0:
+        with open(INTERMEDIATE_LOG_FILE, 'a') as f:
+            f.write(f"\n=== Debug Counter: {_pre_debug_counter} ===\n")
+            f.write(f"Completions: {completions}\n")
+            f.write(f"Responses: {responses}\n")
+            f.write(f"Answer: {answer}\n")
+            f.write("="*50 + "\n")
+    
+    _pre_debug_counter += 1
+    extracted_responses = [extract_xml_answer(r) for r in responses]
+    
+    # Get all equivalence results in one batch
+    equiv_results = batch_equivalence(extracted_responses, answer)
+    
+    # Apply rewards (5.0 for equivalent answers)
+    return [5.0 if is_equiv else 0.0 for is_equiv in equiv_results]
 
 def format_reward_func(completions, **kwargs) -> list[float]:
     """Reward function that checks if the completion has a specific format."""
