@@ -51,7 +51,6 @@ sys.stderr = TeeStream(sys.stderr, log_fileobj)
 from reward_funcs import (
     xmlcount_reward_func,
     format_reward_func,
-    math_good_reward_func,
     combined_reward_func
 )
 
