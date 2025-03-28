@@ -174,7 +174,6 @@ MODEL_DIR = "shared/model"
 #     logging.info("Successfully loaded model from local directory")
 # except Exception as e:
     # If local loading fails, download from Hugging Face
-logging.info(f"Local loading failed with error: {str(e)}")
 logging.info(f"Downloading model from Hugging Face: {MODEL_ID}")
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_ID,
