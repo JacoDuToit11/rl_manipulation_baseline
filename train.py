@@ -212,13 +212,15 @@ def get_latest_checkpoint(directory):
     return os.path.join(directory, latest_checkpoint)
 
 model = AutoModelForCausalLM.from_pretrained(
-    get_latest_checkpoint(INTERMEDIATE_DIR),
+    # get_latest_checkpoint(INTERMEDIATE_DIR),
+    MODEL_ID,
     torch_dtype=torch.bfloat16,
     device_map=None,
     local_files_only=True
 ).to("cuda")
 tokenizer = AutoTokenizer.from_pretrained(
-    get_latest_checkpoint(INTERMEDIATE_DIR),
+    # get_latest_checkpoint(INTERMEDIATE_DIR),
+    MODEL_ID,
     local_files_only=True
 )
 tokenizer.pad_token = tokenizer.eos_token
