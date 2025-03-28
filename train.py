@@ -155,17 +155,36 @@ peft_config = LoraConfig(
     lora_dropout=0.05,
 )
 
+MODEL_ID = "Qwen/Qwen2-0.5B-Instruct"
 MODEL_DIR = "shared/model"
-model = AutoModelForCausalLM.from_pretrained(
-    MODEL_DIR,
-    torch_dtype=torch.bfloat16,
-    device_map=None,
-    local_files_only=True
-).to("cuda")
-tokenizer = AutoTokenizer.from_pretrained(
-    MODEL_DIR,
-    local_files_only=True
-)
+
+try:
+    # First try to load locally (faster if files exist)
+    logging.info(f"Attempting to load model from local directory: {MODEL_DIR}")
+    model = AutoModelForCausalLM.from_pretrained(
+        MODEL_DIR,
+        torch_dtype=torch.bfloat16,
+        device_map=None,
+        local_files_only=True
+    ).to("cuda")
+    tokenizer = AutoTokenizer.from_pretrained(
+        MODEL_DIR,
+        local_files_only=True
+    )
+    logging.info("Successfully loaded model from local directory")
+except Exception as e:
+    # If local loading fails, download from Hugging Face
+    logging.info(f"Local loading failed with error: {str(e)}")
+    logging.info(f"Downloading model from Hugging Face: {MODEL_ID}")
+    model = AutoModelForCausalLM.from_pretrained(
+        MODEL_ID,
+        torch_dtype=torch.bfloat16,
+        device_map=None,
+    ).to("cuda")
+    tokenizer = AutoTokenizer.from_pretrained(
+        MODEL_ID
+    )
+
 tokenizer.pad_token = tokenizer.eos_token
 
 pre_trainer = GRPOTrainer(
