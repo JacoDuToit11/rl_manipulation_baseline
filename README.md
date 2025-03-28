@@ -2,6 +2,20 @@
 
 ## Usage
 
+Set OPENAI_API_KEY env variable
+
 ```
-python model.py
+pip install uv
+```
+
+```
+uv python model.py
+```
+
+```
+uv python dataset.py
+```
+
+```
+uv python train.py
 ```

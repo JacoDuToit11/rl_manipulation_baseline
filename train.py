@@ -7,7 +7,7 @@ from trl import GRPOConfig, GRPOTrainer
 from helper import *
 from peft import LoraConfig
 import os
-from datetime import datetime
+from datetime import datetime   
 import logging
 import sys
 from contextlib import redirect_stdout, redirect_stderr
@@ -220,8 +220,5 @@ trainer = GRPOTrainer(
     peft_config=peft_config
 )
 
-
 trainer.train()
-
-
 print("Training complete successfully; special code: ON THE SIDE OF THE ANGELS")
