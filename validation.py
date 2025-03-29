@@ -7,7 +7,7 @@ from reward_funcs import (
     improvement_reward_func,
     xmlcount_reward_func,
     format_reward_func,
-    math_good_reward_func
+    # math_good_reward_func
 )
 import os
 
