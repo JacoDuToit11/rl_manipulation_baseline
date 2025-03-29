@@ -47,10 +47,10 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
     
     all_metrics = []
     
-    # Process validation data in batches
-    for i in tqdm(range(0, len(validation_data)-batch_size, batch_size), desc="Validating"):
-        batch_items = validation_data[i:i + batch_size]
-        
+    # If data is smaller than batch size, process it as one batch
+    if len(validation_data) <= batch_size:
+        batch_items = validation_data[:]
+        # Process this single batch
         # Format inputs as in training
         prompts = [
             [
@@ -104,6 +104,64 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
                 )[0]
             }
             all_metrics.append(metrics)
+    else:
+        # Process full batches with proper handling of the last batch
+        for i in tqdm(range(0, len(validation_data), batch_size), desc="Validating"):
+            batch_items = validation_data[i:min(i + batch_size, len(validation_data))]
+            # Process each batch
+            # Format inputs as in training
+            prompts = [
+                [
+                    {'role': 'system', 'content': SYSTEM_PROMPT},
+                    {'role': 'user', 'content': item['problem']}
+                ] for item in batch_items
+            ]
+            
+            # Use the chat template to format the inputs properly
+            texts = [
+                tokenizer.apply_chat_template(
+                    prompt,
+                    tokenize=False,
+                    add_generation_prompt=True
+                ) for prompt in prompts
+            ]
+            
+            # Tokenize and generate
+            model_inputs = tokenizer(texts, return_tensors="pt", padding=True, truncation=True).to(device)
+            generated_ids = model.generate(
+                **model_inputs,
+                max_new_tokens=2048,
+                pad_token_id=tokenizer.eos_token_id
+            )
+            
+            # Extract only the generated parts (excluding the prompts)
+            generated_ids = [
+                output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+            ]
+            
+            # Decode the responses
+            completions = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+            
+            # Calculate rewards for each item in batch
+            for prompt, completion, item in zip(prompts, completions, batch_items):
+                metrics = {
+                    'degradation_reward': degradation_reward_func(
+                        [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                    )[0],
+                    'improvement_reward': improvement_reward_func(
+                        [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                    )[0],
+                    'xml_count_reward': xmlcount_reward_func(
+                        [[{'content': completion}]]
+                    )[0],
+                    'format_reward': format_reward_func(
+                        [[{'content': completion}]]
+                    )[0],
+                    'math_good_reward': math_good_reward_func(
+                        [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                    )[0]
+                }
+                all_metrics.append(metrics)
     
     # Calculate average metrics
     print(f"all_metrics: {all_metrics}")
