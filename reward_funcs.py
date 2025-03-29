@@ -178,31 +178,31 @@ def improvement_reward_func(prompts, completions, answer, domain, **kwargs) -> l
     
     return results
 
-INTERMEDIATE_DIR="shared/intermediate/"
-INTERMEDIATE_LOG_FILE = os.path.join(INTERMEDIATE_DIR, f"reward_debug_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
-_pre_debug_counter = 0
+# INTERMEDIATE_DIR="shared/intermediate/"
+# INTERMEDIATE_LOG_FILE = os.path.join(INTERMEDIATE_DIR, f"reward_debug_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+# _pre_debug_counter = 0
 
-def math_good_reward_func(prompts, completions, answer, domain, **kwargs) -> list[float]:
-    global _pre_debug_counter
-    responses = [completion[0]['content'] for completion in completions]
+# def math_good_reward_func(prompts, completions, answer, domain, **kwargs) -> list[float]:
+#     global _pre_debug_counter
+#     responses = [completion[0]['content'] for completion in completions]
     
-    # Only log debug info every 10th call
-    if _pre_debug_counter % 10 == 0:
-        with open(INTERMEDIATE_LOG_FILE, 'a') as f:
-            f.write(f"\n=== Debug Counter: {_pre_debug_counter} ===\n")
-            f.write(f"Completions: {completions}\n")
-            f.write(f"Responses: {responses}\n")
-            f.write(f"Answer: {answer}\n")
-            f.write("="*50 + "\n")
+#     # Only log debug info every 10th call
+#     if _pre_debug_counter % 10 == 0:
+#         with open(INTERMEDIATE_LOG_FILE, 'a') as f:
+#             f.write(f"\n=== Debug Counter: {_pre_debug_counter} ===\n")
+#             f.write(f"Completions: {completions}\n")
+#             f.write(f"Responses: {responses}\n")
+#             f.write(f"Answer: {answer}\n")
+#             f.write("="*50 + "\n")
     
-    _pre_debug_counter += 1
-    extracted_responses = [extract_xml_answer(r) for r in responses]
+#     _pre_debug_counter += 1
+#     extracted_responses = [extract_xml_answer(r) for r in responses]
     
-    # Get all equivalence results in one batch
-    equiv_results = batch_equivalence(extracted_responses, answer)
+#     # Get all equivalence results in one batch
+#     equiv_results = batch_equivalence(extracted_responses, answer)
     
-    # Apply rewards (5.0 for equivalent answers)
-    return [5.0 if is_equiv else 0.0 for is_equiv in equiv_results]
+#     # Apply rewards (5.0 for equivalent answers)
+#     return [5.0 if is_equiv else 0.0 for is_equiv in equiv_results]
 
 def format_reward_func(completions, **kwargs) -> list[float]:
     """Reward function that checks if the completion has a specific format."""
