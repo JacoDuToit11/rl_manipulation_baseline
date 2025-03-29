@@ -97,7 +97,6 @@ training_args = GRPOConfig(
     per_device_train_batch_size=8,
     gradient_accumulation_steps=4,
     num_generations=1,
-    num_iterations=1,
     max_prompt_length=512,
     max_completion_length=1024,
     num_train_epochs=1, # TODO: Change to larger number
