@@ -10,7 +10,7 @@ import os
 from datetime import datetime   
 import logging
 import sys
-
+import shutil
 # Set up logging
 log_dir = "./logs"
 os.makedirs(log_dir, exist_ok=True)
@@ -78,6 +78,31 @@ train_dataset = get_math_questions(split="train")
 val_dataset = get_math_questions(split="validation")
 
 OUTPUT_DIR="shared/submission/"
+
+# Clean output directory if it exists
+if os.path.exists(OUTPUT_DIR):
+    print(f"Cleaning output directory: {OUTPUT_DIR}")
+    # Check if there are any files to remove
+    if os.listdir(OUTPUT_DIR):
+        user_input = input(f"The directory '{OUTPUT_DIR}' contains files. Do you want to remove them? (y/n): ")
+        if user_input.lower() == 'y':
+            # Remove all files and subdirectories
+            for item in os.listdir(OUTPUT_DIR):
+                item_path = os.path.join(OUTPUT_DIR, item)
+                if os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+                else:
+                    os.remove(item_path)
+            print(f"All files in '{OUTPUT_DIR}' have been removed.")
+        else:
+            print("Keeping existing files in output directory.")
+    else:
+        print(f"Output directory '{OUTPUT_DIR}' is already empty.")
+else:
+    print(f"Creating output directory: {OUTPUT_DIR}")
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+
 run_name="Qwen-1.5B-RL-manip"
 training_args = GRPOConfig(
     output_dir=OUTPUT_DIR,

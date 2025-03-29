@@ -197,7 +197,7 @@ def main():
 
     # Load model
     print("Loading model checkpoint...")
-    checkpoint_path = "./shared/submission/checkpoint-6"
+    checkpoint_path = "./shared/submission/checkpoint-40"
     model, tokenizer = load_model(checkpoint_path)
     
     # Run validation
