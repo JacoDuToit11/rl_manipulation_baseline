@@ -117,10 +117,10 @@ training_args = GRPOConfig(
     bf16=True,
     per_device_train_batch_size=8,
     gradient_accumulation_steps=4,
-    num_generations=2,
+    num_generations=4,
     max_prompt_length=512,
     max_completion_length=1024,
-    num_train_epochs=5, # TODO: Change to larger number
+    num_train_epochs=3, # TODO: Change to larger number
     save_steps=100,
     max_grad_norm=0.1,
 	log_on_each_node=False,
@@ -133,12 +133,20 @@ training_args = GRPOConfig(
 )
 
 # Define LoRA config
+# peft_config = LoraConfig(
+#     r=16,
+#     lora_alpha=64,
+#     target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "up_proj", "down_proj", "gate_proj"],
+#     task_type="CAUSAL_LM",
+#     lora_dropout=0.05,
+# )
+
 peft_config = LoraConfig(
-    r=16,
-    lora_alpha=64,
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "up_proj", "down_proj", "gate_proj"],
     task_type="CAUSAL_LM",
-    lora_dropout=0.05,
+    r=8,
+    lora_alpha=32,
+    lora_dropout=0.1,
+    target_modules=["q_proj", "v_proj"],
 )
 
 MODEL_ID = "Qwen/Qwen2.5-3B-Instruct"

@@ -197,6 +197,7 @@ def main():
 
     # Load model
     print("Loading model checkpoint...")
+    # TODO: Fix this!
     checkpoint_path = "./shared/submission/checkpoint-40"
     model, tokenizer = load_model(checkpoint_path)
     
