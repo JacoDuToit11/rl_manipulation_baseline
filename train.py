@@ -149,7 +149,7 @@ peft_config = LoraConfig(
     target_modules=["q_proj", "v_proj"],
 )
 
-MODEL_ID = "Qwen/Qwen2.5-3B-Instruct"
+MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
 MODEL_DIR = "shared/model"
 
 def get_latest_checkpoint(directory):
