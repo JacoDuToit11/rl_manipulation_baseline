@@ -69,10 +69,10 @@ def get_math_questions(split = "train") -> Dataset:
     data = data["train"].map(lambda x: {
         'prompt': [
             {'role': 'system', 'content': SYSTEM_PROMPT},
-            {'role': 'user', 'content': x['problem']}
+            {'role': 'user', 'content': x['question']}
         ],
-        'answer': x['answer'],
-        'domain': x.get('domain', '')
+        'answer': x['expected_answer'],
+        'domain': x.get('type', '')
     })
     return data
 
