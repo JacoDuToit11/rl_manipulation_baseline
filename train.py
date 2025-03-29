@@ -116,7 +116,7 @@ peft_config = LoraConfig(
     lora_dropout=0.05,
 )
 
-MODEL_ID = "Qwen/Qwen2-0.5B-Instruct"
+MODEL_ID = "Qwen/Qwen2.5-3B-Instruct"
 MODEL_DIR = "shared/model"
 
 def get_latest_checkpoint(directory):
