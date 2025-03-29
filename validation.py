@@ -99,9 +99,9 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
                 'format_reward': format_reward_func(
                     [[{'content': completion}]]
                 )[0],
-                'math_good_reward': math_good_reward_func(
-                    [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
-                )[0]
+                # 'math_good_reward': math_good_reward_func(
+                    # [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
+                # )[0]
             }
             all_metrics.append(metrics)
     else:
