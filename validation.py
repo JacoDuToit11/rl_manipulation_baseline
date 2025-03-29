@@ -55,7 +55,7 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
         prompts = [
             [
                 {'role': 'system', 'content': SYSTEM_PROMPT},
-                {'role': 'user', 'content': item['problem']}
+                {'role': 'user', 'content': item['question']}
             ] for item in batch_items
         ]
         
@@ -88,10 +88,10 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
         for prompt, completion, item in zip(prompts, completions, batch_items):
             metrics = {
                 'degradation_reward': degradation_reward_func(
-                    [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                    [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
                 )[0],
                 'improvement_reward': improvement_reward_func(
-                    [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                    [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
                 )[0],
                 'xml_count_reward': xmlcount_reward_func(
                     [[{'content': completion}]]
@@ -100,7 +100,7 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
                     [[{'content': completion}]]
                 )[0],
                 'math_good_reward': math_good_reward_func(
-                    [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                    [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
                 )[0]
             }
             all_metrics.append(metrics)
@@ -113,7 +113,7 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
             prompts = [
                 [
                     {'role': 'system', 'content': SYSTEM_PROMPT},
-                    {'role': 'user', 'content': item['problem']}
+                    {'role': 'user', 'content': item['question']}
                 ] for item in batch_items
             ]
             
@@ -146,10 +146,10 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
             for prompt, completion, item in zip(prompts, completions, batch_items):
                 metrics = {
                     'degradation_reward': degradation_reward_func(
-                        [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                        [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
                     )[0],
                     'improvement_reward': improvement_reward_func(
-                        [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                        [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
                     )[0],
                     'xml_count_reward': xmlcount_reward_func(
                         [[{'content': completion}]]
@@ -158,7 +158,7 @@ def run_validation(model, tokenizer, validation_data, device='cuda', batch_size=
                         [[{'content': completion}]]
                     )[0],
                     'math_good_reward': math_good_reward_func(
-                        [prompt], [[{'content': completion}]], [item['answer']], [item.get('domain', '')]
+                        [prompt], [[{'content': completion}]], [item['expected_answer']], [item.get('type', '')]
                     )[0]
                 }
                 all_metrics.append(metrics)
