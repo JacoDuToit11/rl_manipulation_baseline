@@ -10,7 +10,6 @@ import os
 from datetime import datetime   
 import logging
 import sys
-from contextlib import redirect_stdout, redirect_stderr
 
 # Set up logging
 log_dir = "./logs"
@@ -57,7 +56,6 @@ from reward_funcs import (
 
 clear_cuda_cache()
 
-
 SYSTEM_PROMPT = """A conversation between User and Assistant. The user asks a question, and the Assistant solves it.
 The assistant first thinks about the reasoning process in the mind and then provides the user
 with the answer. The reasoning process and answer are enclosed within <reasoning> </reasoning> and
@@ -76,8 +74,6 @@ def get_math_questions(split = "train") -> Dataset:
     })
     return data
 
-# pre_train_dataset = get_math_questions(split="pre_train")
-# pre_val_dataset = get_math_questions(split="pre_validation")
 train_dataset = get_math_questions(split="train")
 val_dataset = get_math_questions(split="validation")
 
@@ -99,7 +95,7 @@ training_args = GRPOConfig(
     num_generations=2,
     max_prompt_length=512,
     max_completion_length=1024,
-    num_train_epochs=1, # TODO: Change to larger number
+    num_train_epochs=3, # TODO: Change to larger number
     save_steps=100,
     max_grad_norm=0.1,
 	log_on_each_node=False,
