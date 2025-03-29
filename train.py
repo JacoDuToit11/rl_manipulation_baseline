@@ -76,8 +76,8 @@ def get_math_questions(split = "train") -> Dataset:
     })
     return data
 
-pre_train_dataset = get_math_questions(split="pre_train")
-pre_val_dataset = get_math_questions(split="pre_validation")
+# pre_train_dataset = get_math_questions(split="pre_train")
+# pre_val_dataset = get_math_questions(split="pre_validation")
 train_dataset = get_math_questions(split="train")
 val_dataset = get_math_questions(split="validation")
 
