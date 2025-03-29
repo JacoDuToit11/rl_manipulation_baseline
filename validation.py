@@ -136,10 +136,11 @@ def main():
     # Load validation data
     print("Loading validation data...")
     validation_data = load_validation_data()
-    
+
     # Load model
     print("Loading model checkpoint...")
-    model, tokenizer = load_model()
+    checkpoint_path = "./shared/submission/checkpoint-6"
+    model, tokenizer = load_model(checkpoint_path)
     
     # Run validation
     print("Running validation...")
