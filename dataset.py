@@ -6,7 +6,7 @@ import random
 DATASET_NAME = "nvidia/OpenMath-MATH-Masked"
 
 # Check if dataset directory already exists and has files
-DATASET_DIR = os.path.join(os.path.dirname(__file__), "dataset")
+DATASET_DIR = os.path.join(os.path.dirname(__file__), "shared/dataset")
 if os.path.exists(DATASET_DIR) and os.listdir(DATASET_DIR):
     user_input = input(f"The directory '{DATASET_DIR}' already exists and contains files. Do you want to overwrite it? (y/n): ")
     if user_input.lower() != 'y':
